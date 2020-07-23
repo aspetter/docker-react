@@ -8,3 +8,15 @@ before_install:
 
 script:
     - docker run -e CI=true aspetter/docker-react npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-southeast-2"
+    app: "DockerReactTest"
+    env: "DockerReactTest-env"
+    bucket_name: "elasticbeanstalk-ap-southeast-2-050896652040"
+    bucket_path: "DockerReactTest"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
